@@ -1,0 +1,9 @@
+.env
+
+/data/*
+!/data/.keep
+!/data/certbot/www/.well-known/acme-challenge/test.txt
+
+.sites.template
+/nginx/sites-enabled/*
+!/nginx/sites-enabled/.keep
