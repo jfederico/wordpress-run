@@ -12,6 +12,8 @@ services:
       - ./nginx/sites.template.docker:/etc/nginx/sites-available/sites.template
       - ./nginx/default/html:/var/www/html
       - ./data/log/nginx:/var/log/nginx
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     ports:
       - "80:80"
       - "443:443"
@@ -25,7 +27,7 @@ services:
     image: mysql:5.7
     container_name: mysql
     volumes:
-      - db_data:/var/lib/mysql
+      - ./data/mysql/:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
@@ -38,11 +40,11 @@ services:
       - db
     image: wordpress:latest
     container_name: wordpress
+    volumes:
+      - ./wordpress/html/:/var/www/html
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-volumes:
-  db_data: {}

@@ -4,6 +4,9 @@
 !/data/.keep
 !/data/certbot/www/.well-known/acme-challenge/test.txt
 
+/wordpress/*
+!/wordpress/.keep
+
 .sites.template
 /nginx/sites-enabled/*
 !/nginx/sites-enabled/.keep
