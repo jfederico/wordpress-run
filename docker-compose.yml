@@ -18,8 +18,8 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - NGINX_HOSTNAME=${URL_HOST:-sahuaro.jesus.123it.ca}
-    command: /bin/bash -c "envsubst '$$NGINX_HOSTNAME' < /etc/nginx/sites-available/sites.template > /etc/nginx/sites-enabled/sites.conf && exec nginx -g 'daemon off;'"
+      - NGINX_DOMAIN_NAME=${DOMAIN_NAME:-sahuaro.jesus.123it.ca}
+    command: /bin/bash -c "envsubst '$$NGINX_DOMAIN_NAME' < /etc/nginx/sites-available/sites.template > /etc/nginx/sites-enabled/sites.conf && exec nginx -g 'daemon off;'"
     logging:
       driver: journald
 
