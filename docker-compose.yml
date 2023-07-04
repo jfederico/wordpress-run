@@ -50,3 +50,19 @@ services:
       WORDPRESS_DB_NAME: wordpress
     logging:
       driver: journald
+
+  wordpress-one:
+    depends_on:
+      - db
+    image: wordpress:latest
+    container_name: wordpress-one
+    volumes:
+      - ./wordpress/one/html/:/var/www/html
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress_one
+    logging:
+      driver: journald
